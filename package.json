@@ -1,0 +1,22 @@
+{
+  "name": "lsitcm",
+  "version": "1.0.0",
+  "description": "Logan S. iTunes Controller for Mac: A simple controller for iTunes",
+  "main": "index.js",
+  "preferGlobal": true,
+  "bin": "./index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "testMusic": "node . -s \"John the Fisherman\" -a Primus -l \"Frizzle Fry\"",
+    "testPause": "node . -P"
+  },
+  "author": "Logan Savage (r2d2292)",
+  "license": "MIT",
+  "dependencies": {
+    "applescript": "^1.0.0",
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1"
+  }
+}
