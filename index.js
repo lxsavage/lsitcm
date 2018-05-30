@@ -18,8 +18,9 @@ program
 
 // Perform the selected action(s)
 if (program.playpause) itunes.playPause()
-if (program.previous) itunes.gotoPrevious()
-if (program.skip) itunes.gotoNext()
+if (program.previous)  itunes.gotoPrevious()
+if (program.skip)      itunes.gotoNext()
+
 if (program.song || program.artist || program.album) {
   itunes.playSong({
     name: program.song,
