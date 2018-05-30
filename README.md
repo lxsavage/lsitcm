@@ -1,5 +1,7 @@
 # LSITCM
 
+![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
+
 ###### **Note: This project is incomplete, and is barely at an operating state. Only test this project if you understand that it could significantly change from what it is currently.**
 
 ### What is it?
