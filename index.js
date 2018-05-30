@@ -34,7 +34,7 @@ if (!program.silent) {
   itunes.getPlayerState((state) => {
     if (state === 'playing') {
       itunes.getMetadata((meta) => {
-        console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]}`)
+        console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`)
       })
     }
     else {
