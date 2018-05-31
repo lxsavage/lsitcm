@@ -4,6 +4,7 @@
 
 ###### **Note: This project is incomplete, and is barely at an operating state. Only test this project if you understand that it could significantly change from what it is currently.**
 
+### Install
 `sudo npm i -g lsitcm`
 
 ### What is it?
