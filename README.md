@@ -4,6 +4,8 @@
 
 ###### **Note: This project is incomplete, and is barely at an operating state. Only test this project if you understand that it could significantly change from what it is currently.**
 
+`sudo npm i -g lsitcm`
+
 ### What is it?
 
 LSITCM is a CLI for controlling iTunes on OSX/MacOS. It utilizes AppleScript to control the iTunes player to play a song, pause/play, skip a song, and play the previous song.
