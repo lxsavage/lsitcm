@@ -11,7 +11,7 @@ var itunes = require('./lib/itunes')
 //   through <this>.itunes.(...).
 module.exports = {
   itunes: itunes,
-  dispState: () => {
+  dispState: async () => {
     itunes.getPlayerState((state) => {
       if (state === 'playing') {
         itunes.getMetadata((meta) => {

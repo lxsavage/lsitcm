@@ -2,12 +2,10 @@
 
 ![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
 
-###### **Note: This project is incomplete, and is barely at an operating state. Only test this project if you understand that it could significantly change from what it is currently.**
+###### **Note: This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently.**
 
 ### Install
 `npm i lsitcm`
-
-[See npmjs page...](https://www.npmjs.com/package/lsitcm)
 
 ### What is it?
 
