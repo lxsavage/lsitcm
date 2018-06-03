@@ -3,6 +3,7 @@ var program = require('commander')
 var chalk = require('chalk')
 
 var itunes = require('./lib/itunes')
+var AAPL = require('applescript')
 
 // Utilization as external module:
 //   If this is included as a module inside another
@@ -13,6 +14,16 @@ module.exports = {
   itunes: itunes,
   dispState: function(callback) {
     itunes.getPlayerState((state) => {
+      if (state === 'playing') {
+        AAPL.execString('tell application "iTunes" to return (get the name of current track) & " – " & (get the artist of current track) & " [" & (get the album of current track) & "]" as string', (err, c) => {
+          console.log(chalk.green.bold('▶  PLAYING: ') + c)
+        })
+      }
+      else {
+        console.log(chalk.red.bold('❚❚ PAUSED'))
+      }
+      /*
+      // Color version: Very slow
       itunes.getMetadata((meta) => {
         let sTxt
         if (state === 'playing') {
@@ -23,7 +34,7 @@ module.exports = {
         }
 
         if (typeof callback === 'function') callback()
-      })
+      })*/
     })
   }
 }
