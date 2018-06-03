@@ -26,3 +26,5 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
+
+### UPDATE: This module can be used inside your project! just include it through `require('lsitcm')`. Wiki page coming soon...

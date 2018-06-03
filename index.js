@@ -4,6 +4,27 @@ var chalk = require('chalk')
 
 var itunes = require('./lib/itunes')
 
+// Utilization as external module:
+//   If this is included as a module inside another
+//   node project, then the functions below can be
+//   utilized, and the iTunes binding can be also used
+//   through <this>.itunes.(...).
+module.exports = {
+  itunes: itunes,
+  dispState: () => {
+    itunes.getPlayerState((state) => {
+      if (state === 'playing') {
+        itunes.getMetadata((meta) => {
+          console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`)
+        })
+      }
+      else {
+        console.log(chalk.red.bold('❚❚ PAUSED'))
+      }
+    })
+  }
+}
+
 // Setup the command
 program
   .version('1.0.1')
@@ -31,14 +52,5 @@ if (program.song || program.artist || program.album) {
 
 // Get and show state of player with metadata, if the silent flag isn't set
 if (!program.silent) {
-  itunes.getPlayerState((state) => {
-    if (state === 'playing') {
-      itunes.getMetadata((meta) => {
-        console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`)
-      })
-    }
-    else {
-      console.log(chalk.red.bold('❚❚ PAUSED'))
-    }
-  })
+  module.exports.dispState()
 }
