@@ -51,6 +51,6 @@ if (program.song || program.artist || program.album) {
 }
 
 // Get and show state of player with metadata, if the silent flag isn't set
-if (!program.silent) {
+if (!program.silent && !module.parent) {
   module.exports.dispState()
 }

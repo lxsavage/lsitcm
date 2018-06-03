@@ -1,6 +1,6 @@
 {
   "name": "lsitcm",
-  "version": "1.0.2",
+  "version": "1.0.21",
   "description": "iTunes Controller for Mac: A simple controller for iTunes",
   "main": "index.js",
   "preferGlobal": true,
