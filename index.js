@@ -11,19 +11,19 @@ var itunes = require('./lib/itunes')
 //   through <this>.itunes.(...).
 module.exports = {
   itunes: itunes,
-  dispState: (callback) => {
+  dispState: function(callback) {
     itunes.getPlayerState((state) => {
-      let sTxt
-      if (state === 'playing') {
-        itunes.getMetadata((meta) => {
-          sTxt = `${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`
-        })
-      }
-      else {
-        sTxt = chalk.red.bold('❚❚ PAUSED')
-      }
+      itunes.getMetadata((meta) => {
+        let sTxt
+        if (state === 'playing') {
+          console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`)
+        }
+        else {
+          console.log(chalk.red.bold('❚❚ PAUSED'))
+        }
 
-      callback(sTxt)
+        if (typeof callback === 'function') callback()
+      })
     })
   }
 }
@@ -55,7 +55,5 @@ if (program.song || program.artist || program.album) {
 
 // Get and show state of player with metadata, if the silent flag isn't set
 if (!program.silent && !module.parent) {
-  module.exports.dispState((txt) => {
-    console.log(txt)
-  })
+  module.exports.dispState()
 }
