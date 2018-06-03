@@ -13,23 +13,24 @@ module.exports = {
   itunes: itunes,
   dispState: (callback) => {
     itunes.getPlayerState((state) => {
+      let sTxt
       if (state === 'playing') {
         itunes.getMetadata((meta) => {
-          console.log(`${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`)
+          sTxt = `${chalk.green.bold('▶  PLAYING:')} ${chalk.hex('#FFD700')(meta.name)} – ${chalk.hex('#7EC0EE')(meta.artist)} [${chalk.yellow(meta.album)}]`
         })
       }
       else {
-        console.log(chalk.red.bold('❚❚ PAUSED'))
+        sTxt = chalk.red.bold('❚❚ PAUSED')
       }
 
-      callback()
+      callback(sTxt)
     })
   }
 }
 
 // Setup the command
 program
-  .version('1.0.23')
+  .version('1.0.24')
   .option('-S, --silent', 'disables result output')
   .option('-P, --playpause', 'toggle the playing state of the music')
   .option('-N, --skip', 'skip this song')
@@ -54,5 +55,7 @@ if (program.song || program.artist || program.album) {
 
 // Get and show state of player with metadata, if the silent flag isn't set
 if (!program.silent && !module.parent) {
-  module.exports.dispState()
+  module.exports.dispState((txt) => {
+    console.log(txt)
+  })
 }
