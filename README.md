@@ -5,7 +5,9 @@
 ###### **Note: This project is incomplete, and is barely at an operating state. Only test this project if you understand that it could significantly change from what it is currently.**
 
 ### Install
-`sudo npm i -g lsitcm`
+`npm i lsitcm`
+
+[See npmjs page...](https://www.npmjs.com/package/lsitcm)
 
 ### What is it?
 
