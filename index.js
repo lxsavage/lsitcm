@@ -11,7 +11,7 @@ var itunes = require('./lib/itunes')
 //   through <this>.itunes.(...).
 module.exports = {
   itunes: itunes,
-  dispState: async () => {
+  dispState: (callback) => {
     itunes.getPlayerState((state) => {
       if (state === 'playing') {
         itunes.getMetadata((meta) => {
@@ -21,13 +21,15 @@ module.exports = {
       else {
         console.log(chalk.red.bold('❚❚ PAUSED'))
       }
+
+      callback()
     })
   }
 }
 
 // Setup the command
 program
-  .version('1.0.1')
+  .version('1.0.23')
   .option('-S, --silent', 'disables result output')
   .option('-P, --playpause', 'toggle the playing state of the music')
   .option('-N, --skip', 'skip this song')
