@@ -1,6 +1,6 @@
 tell application "iTunes"
-	set nom to the name of current track
-	set art to the artist of current track
-	set alb to the album of current track
+	set n to the name of current track
+	set a to the artist of current track
+	set l to the album of current track
 end tell
-return {nom, art, alb}
+return {n, a, l}

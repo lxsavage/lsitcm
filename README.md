@@ -2,9 +2,7 @@
 
 ![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
 
-###### **Note: This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently.**
-
-###### **Note: Due to being based upon AppleScript, this module will not work on non-MacOS systems.**
+###### **Note: This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently. Due to being based upon AppleScript, this module will not work on non-MacOS systems; please don't ask for a Windows or Linux-distro version.**
 
 ### Install
 API | CLI

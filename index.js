@@ -45,7 +45,7 @@ module.exports = {
 // Setup the command, if not a module
 if (!module.parent) {
   program
-    .version('1.1.0')
+    .version('1.1.01')
     .option('-S, --silent', 'disables result output')
     .option('-C, --nocolor', 'removes color from the output')
     .option('-P, --playpause', 'toggle the playing state of the music')
