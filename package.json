@@ -1,7 +1,7 @@
 {
   "name": "lsitcm",
-  "version": "1.0.28",
-  "description": "iTunes Controller for Mac: A simple controller for iTunes",
+  "version": "1.1.0",
+  "description": "Control iTunes with node. (Hybrid API/CLI)",
   "main": "index.js",
   "bin": "./index.js",
   "directories": {

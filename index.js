@@ -45,8 +45,9 @@ module.exports = {
 // Setup the command, if not a module
 if (!module.parent) {
   program
-    .version('1.0.24')
+    .version('1.1.0')
     .option('-S, --silent', 'disables result output')
+    .option('-C, --nocolor', 'removes color from the output')
     .option('-P, --playpause', 'toggle the playing state of the music')
     .option('-N, --skip', 'skip this song')
     .option('-R, --previous', 'play the previous song')
@@ -70,6 +71,6 @@ if (!module.parent) {
 
   // Get and show state of player with metadata, if the silent flag isn't set
   if (!program.silent) {
-    module.exports.dispState(true)
+    module.exports.dispState(!program.nocolor)
   }
 }

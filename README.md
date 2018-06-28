@@ -4,16 +4,20 @@
 
 ###### **Note: This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently.**
 
+###### **Note: Due to being based upon AppleScript, this module will not work on non-MacOS systems.**
+
 ### Install
-`npm i lsitcm`
+API | CLI
+--- | ---
+`npm i lsitcm` | `sudo npm i -g lsitcm`
 
 ### What is it?
 
-LSITCM is a CLI for controlling iTunes on OSX/MacOS. It utilizes AppleScript to control the iTunes player to play a song, pause/play, skip a song, and play the previous song.
+LSITCM is a module for controlling iTunes on MacOS. It utilizes AppleScript to control the iTunes player to play a song, pause/play, skip a song, and play the previous song.
 
 ### Why use it?
 
-Inside of external utilities such as SSH, the graphical portition of the host is not available, and only a console window is available. With the ability to control iTunes through the system console, it extends the capabilities of utilizing OSX/MacOS.
+Inside of external utilities such as SSH, the graphical portition of the host is not available, and only a console (bash) window is available. With the ability to control iTunes through the system console, it extends the capabilities of utilizing MacOS.
 
 ### How to use it?
 
@@ -26,5 +30,4 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
-
-###### UPDATE: This module can be used inside your project! just include it through `require('lsitcm')`. Wiki page coming soon...
+###### UPDATE (v1.0.2): This module can be used inside your project! just include it through `require('lsitcm')`. Wiki page coming soon...
