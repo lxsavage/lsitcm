@@ -45,7 +45,7 @@ module.exports = {
 // Setup the command, if not a module
 if (!module.parent) {
   program
-    .version('1.1.01')
+    .version('1.1.4')
     .option('-S, --silent', 'disables result output')
     .option('-L, --launch', 'launches iTunes, if it isn\'t already open')
     .option('-C, --nocolor', 'removes color from the output')
