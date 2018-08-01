@@ -17,11 +17,11 @@ module.exports = {
       if (!isColor) {
         if (state === 'playing') {
           AAPL.execString('tell application "iTunes" to return (get the name of current track) & " – " & (get the artist of current track) & " [" & (get the album of current track) & "]" as string', (err, c) => {
-            console.log(chalk.green.bold('▶  PLAYING: ') + c)
+            console.log('▶  PLAYING: ' + c)
           })
         }
         else {
-          console.log(chalk.red.bold('❚❚ PAUSED'))
+          console.log('❚❚ PAUSED')
         }
       }
       else {
@@ -47,6 +47,7 @@ if (!module.parent) {
   program
     .version('1.1.01')
     .option('-S, --silent', 'disables result output')
+    .option('-L, --launch', 'launches iTunes, if it isn\'t already open')
     .option('-C, --nocolor', 'removes color from the output')
     .option('-P, --playpause', 'toggle the playing state of the music')
     .option('-N, --skip', 'skip this song')
@@ -57,6 +58,7 @@ if (!module.parent) {
     .parse(process.argv)
 
   // Perform the selected action(s)
+  if (program.launch)    itunes.launchITunes()
   if (program.playpause) itunes.playPause()
   if (program.previous)  itunes.gotoPrevious()
   if (program.skip)      itunes.gotoNext()
@@ -70,7 +72,7 @@ if (!module.parent) {
   }
 
   // Get and show state of player with metadata, if the silent flag isn't set
-  if (!program.silent) {
+  if (!program.silent && typeof program.launchITunes === 'undefined') {
     module.exports.dispState(!program.nocolor)
   }
 }
