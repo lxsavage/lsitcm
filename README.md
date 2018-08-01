@@ -2,7 +2,7 @@
 
 ![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
 
-###### **Note: This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently. Due to being based upon AppleScript, this module will not work on non-MacOS systems; please don't ask for a Windows or Linux-distro version.**
+###### **This project is incomplete, and is barely at an operating state; it will therefore have near constant updating. Only test this project if you understand that it could significantly change from what it is currently. Due to being based upon AppleScript, this module will not work on non-MacOS systems; please don't ask for a Windows or Linux-distro version.**
 
 ### Install
 API | CLI
@@ -28,4 +28,4 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
-###### UPDATE (v1.0.2): This module can be used inside your project! just include it through `require('lsitcm')`. Wiki page coming soon...
+###### UPDATE (v1.0.2): This module can be used inside your project! just include it through `require('lsitcm')`. See [this](https://github.com/r2d2292/lsitcm/wiki/Using-lsitcm-in-a-program "lsitcm in a program guide") wiki page for more information.
