@@ -2,8 +2,6 @@
 
 ![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
 
-###### **This project is in an archived state. It will most likely not be updated further in the future.**
-
 ### Install
 API | CLI
 --- | ---
