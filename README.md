@@ -27,4 +27,4 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
-###### UPDATE (v1.0.2): This module can be used inside your project! just include it through `require('lsitcm')`. See [this](https://github.com/r2d2292/lsitcm/wiki/Using-lsitcm-in-a-program "lsitcm in a program guide") wiki page for more information.
+###### UPDATE (v1.0.3): This module has been demoted back to just a CLI, to reduce overhead for its original purpose. To access the underlying APIs, look inside the *lib* folder for `itunes.js` and its corresponding AppleScript.
