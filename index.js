@@ -17,30 +17,32 @@ program
 
   .parse(process.argv)
 
-// Perform the selected action(s)
-if (program.launch)    itunes.launchITunes()
-if (program.previous)  itunes.gotoPrevious()
-if (program.skip)      itunes.gotoNext()
-if (program.playpause) itunes.playPause()
+async function applyActions() {
+  if (program.launch)    await itunes.launchITunes()
+  if (program.previous)  await itunes.gotoPrevious()
+  if (program.skip)      await itunes.gotoNext()
+  if (program.playpause) await itunes.playPause()
 
-if (program.song || program.artist || program.album) {
-  itunes.playSong({
-    name: program.song,
-    artist: program.artist,
-    album: program.album
-  })
-}
-
-// Get and show state of player with metadata, if the silent flag isn't set
-if (!program.silent) {
-  itunes.getPlayerState(state => {
-    itunes.getMetadata(meta => {
-      if (program.noformatting) {
-        console.log(`${state ? 'PLAYING' : 'PAUSED'}: "${meta.name}" – ${meta.artist} [${meta.album}]`)
-      }
-      else {
-        console.log(`${state ? chalk.green.bold('▶') : chalk.red.bold('❚❚')} ${chalk.white(meta.name)} – ${chalk.blue(meta.artist)} [${chalk.yellow(meta.album)}]`)
-      }
+  if (program.song || program.artist || program.album) {
+    await itunes.playSong({
+      name: program.song,
+      artist: program.artist,
+      album: program.album
     })
-  })
+  }
+  showStatus()
 }
+
+async function showStatus() {
+  let state = await itunes.getPlayerState()
+  let meta = await itunes.getMetadata()
+
+  if (program.noformatting) {
+    console.log(`${state ? 'Playing' : 'Paused'}: "${meta.name}" – ${meta.artist} [${meta.album}]`)
+  }
+  else {
+    console.log(`${state ? chalk.green.bold('▶') : chalk.red.bold('❚❚')} ${chalk.white(meta.name)} – ${chalk.blue(meta.artist)} [${chalk.yellow(meta.album)}]`)
+  }
+}
+
+applyActions()
