@@ -2,8 +2,6 @@
 
 ![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
 
-##### NOTICE: This is the Canary branch, with extremely unstable code; utilize the *main* branch instead of this one for stable releases
-
 **Note**: MacOS Catalina support is coming in 2.0.0 (this version).
 
 ### Install
