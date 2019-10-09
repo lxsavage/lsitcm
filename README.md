@@ -1,6 +1,6 @@
 # LSITCM
 
-![Terminal.app Demo of lsitcm](https://s22.postimg.cc/jinq68mtt/demo.png)
+![Terminal.app Demo of lsitcm](site_assets/images/example-1.png)
 
 **Note**: MacOS Catalina support is coming in 2.0.0 (this version).
 
