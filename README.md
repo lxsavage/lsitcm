@@ -14,7 +14,7 @@ LSITCM is a module for controlling iTunes on MacOS. It utilizes AppleScript to c
 
 ### Why use it?
 
-Inside of external utilities such as SSH, the graphical portition of the host is not available, and only a console (bash) window is available. With the ability to control iTunes through the system console, it extends the capabilities of utilizing MacOS.
+Inside of external utilities such as SSH, the graphical portition of the host is not available, and only a console (shell) window is available. With the ability to control iTunes through the system console, it extends the capabilities of utilizing MacOS.
 
 ### How to use it?
 
@@ -27,4 +27,3 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
-###### UPDATE (v1.0.3): This module has been demoted back to just a CLI, to reduce overhead for its original purpose. To access the underlying APIs, look inside the *lib* folder for `itunes.js` and its corresponding AppleScript.

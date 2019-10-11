@@ -20,6 +20,7 @@
   "author": "Logan Savage (r2d2292)",
   "license": "MIT",
   "dependencies": {
+    "ansi-styles": "^4.1.0",
     "applescript": "^1.0.0",
     "chalk": "^2.4.1",
     "commander": "^2.16.0",

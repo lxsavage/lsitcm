@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-var program = require('commander')
-var chalk = require('chalk')
-var itunes = require('./lib/itunes')
+const program = require('commander')
+const chalk = require('chalk')
+const itunes = require('./lib/itunes')
+const prompt = require('./lib/promptparse')
+const config = require('./config.json')
 
 program
   .version(require('./package.json').version)
@@ -14,11 +16,10 @@ program
   .option('-s, --song [song]', 'play [song] (requires --artist and --album)')
   .option('-a, --artist [artist]', 'play a song from [artist] (requires --song and --album also)')
   .option('-l, --album [album]', 'play a song in [album] (requires --song and --artist also)')
-
   .parse(process.argv)
 
 async function applyActions() {
-  if (program.launch)    await itunes.launchITunes()
+  if (program.launch)    await itunes.activate()
   if (program.previous)  await itunes.gotoPrevious()
   if (program.skip)      await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
@@ -30,7 +31,6 @@ async function applyActions() {
       album: program.album
     })
   }
-  showStatus()
 }
 
 async function showStatus() {
@@ -38,11 +38,15 @@ async function showStatus() {
   let meta = await itunes.getMetadata()
 
   if (program.noformatting) {
-    console.log(`${state ? 'Playing' : 'Paused'}: "${meta.name}" – ${meta.artist} [${meta.album}]`)
+    console.log(`${ state ? 'Playing' : 'Paused' }: "${meta.name}" – ${meta.artist} [${meta.album}]`)
   }
   else {
-    console.log(`${state ? chalk.green.bold('▶') : chalk.red.bold('❚❚')} ${chalk.white(meta.name)} – ${chalk.blue(meta.artist)} [${chalk.yellow(meta.album)}]`)
+    let path = config.Prompt.Location.replace(/\./g, __dirname)
+    let prpt = await prompt.decode(path)
+    console.log(prpt)
+    //console.log(`${ state ? chalk.green.bold('▶') : chalk.red.bold('❚❚') } ${chalk.white(meta.name)} – ${chalk.blue(meta.artist)} [${chalk.yellow(meta.album)}]`)
   }
 }
 
-applyActions()
+// Run the selected actions, then show the status of the player
+applyActions().then(() => showStatus())
