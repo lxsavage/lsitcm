@@ -1,9 +1,10 @@
 {
   "name": "lsitcm",
-  "version": "1.1.4",
-  "description": "Control iTunes with node. (Hybrid API/CLI)",
-  "main": "index.js",
-  "bin": "./index.js",
+  "version": "2.0.0",
+  "description": "Control iTunes/Music via a CLI",
+  "bin": {
+    "lsitcm": "./index.js"
+  },
   "directories": {
     "lib": "lib"
   },
@@ -15,13 +16,14 @@
     "url": "https://github.com/r2d2292/lsitcm.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ."
   },
   "author": "Logan Savage (r2d2292)",
   "license": "MIT",
   "dependencies": {
+    "ansi-styles": "^4.1.0",
     "applescript": "^1.0.0",
-    "chalk": "^2.4.1",
-    "commander": "^2.16.0"
+    "commander": "^2.16.0",
+    "macos-version": "^5.2.0"
   }
 }

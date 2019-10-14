@@ -1,1 +1,9 @@
+# Temp files
 .DS_Store
+*.log
+
+# Testing
+.vscode/
+
+# Dependencies
+node_modules/
