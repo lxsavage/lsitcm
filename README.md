@@ -2,7 +2,7 @@
 
 ![Terminal.app Demo of lsitcm](site_assets/images/example-1.png)
 
-**Note**: MacOS Catalina support is coming in 2.0.0 (this version).
+**Note**: MacOS Catalina support has been added this version (2.0.0)
 
 ### Install
 
