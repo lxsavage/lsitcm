@@ -1,9 +1,10 @@
 {
   "name": "lsitcm",
   "version": "2.0.0",
-  "description": "Control iTunes via a CLI",
-  "main": "index.js",
-  "bin": "./index.js",
+  "description": "Control iTunes/Music via a CLI",
+  "bin": {
+    "lsitcm": "./index.js"
+  },
   "directories": {
     "lib": "lib"
   },
@@ -22,7 +23,6 @@
   "dependencies": {
     "ansi-styles": "^4.1.0",
     "applescript": "^1.0.0",
-    "chalk": "^2.4.1",
     "commander": "^2.16.0",
     "macos-version": "^5.2.0"
   }

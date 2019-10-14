@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const program = require('commander')
-const chalk = require('chalk')
 const itunes = require('./lib/itunes')
 const prompt = require('./lib/promptparse')
 const config = require('./config.json')
@@ -19,9 +18,9 @@ program
   .parse(process.argv)
 
 async function applyActions() {
-  if (program.launch)    await itunes.activate()
-  if (program.previous)  await itunes.gotoPrevious()
-  if (program.skip)      await itunes.gotoNext()
+  if (program.launch) await itunes.activate()
+  if (program.previous) await itunes.gotoPrevious()
+  if (program.skip) await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
 
   if (program.song || program.artist || program.album) {
@@ -41,12 +40,9 @@ async function showStatus() {
     console.log(`${ state ? 'Playing' : 'Paused' }: "${meta.name}" – ${meta.artist} [${meta.album}]`)
   }
   else {
-    let path = config.Prompt.Location.replace(/\./g, __dirname)
-    let prpt = await prompt.decode(path)
-    console.log(prpt)
-    //console.log(`${ state ? chalk.green.bold('▶') : chalk.red.bold('❚❚') } ${chalk.white(meta.name)} – ${chalk.blue(meta.artist)} [${chalk.yellow(meta.album)}]`)
+    console.log(await prompt.decode(config.Prompt.Location.replace(/\./g, __dirname)))
   }
 }
 
 // Run the selected actions, then show the status of the player
-applyActions().then(() => showStatus())
+applyActions().then(() => !program.silent ? showStatus() : void(0))
