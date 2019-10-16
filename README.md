@@ -18,7 +18,7 @@ Inside of external utilities such as SSH, the graphical portition of the host is
 
 ### How to use it?
 
-LSITCM has 3 main uses (as of now):
+A few examples of how the program can be used are as follows:
 1. Play a specific song:
   - `lsitcm -s [SONG NAME] -a [ARTIST NAME] -l [ALBUM NAME]`
 2. Show the playing status of iTunes:
@@ -27,3 +27,5 @@ LSITCM has 3 main uses (as of now):
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
+
+All commands that are available are shown through `lsitcm -h`
