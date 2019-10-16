@@ -1,6 +1,6 @@
 # LSITCM
 
-![Terminal.app Demo of lsitcm](site_assets/images/example-1.png)
+![Terminal.app Demo of lsitcm](site_assets/images/cover-photo.png)
 
 **Note**: MacOS Catalina support has been added this version (2.0.0)
 
