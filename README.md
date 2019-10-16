@@ -20,7 +20,7 @@ Inside of external utilities such as SSH, the graphical portition of the host is
 
 A few examples of how the program can be used are as follows:
 1. Play a specific song:
-  - `lsitcm -s [SONG NAME] -a [ARTIST NAME] -l [ALBUM NAME]`
+  - `lsitcm [-s <SONG NAME>] [-a <ARTIST NAME>] [-l <ALBUM NAME>]`
 2. Show the playing status of iTunes:
   - `lsitcm`
 3. Control iTunes' flow:
