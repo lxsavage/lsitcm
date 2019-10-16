@@ -7,3 +7,7 @@
 
 # Dependencies
 node_modules/
+
+# NPM lock exclusion to remove ambiguity for what package manager is used;
+# NPM is used for global linking purposes only
+package-lock.json

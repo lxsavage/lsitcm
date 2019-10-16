@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 const program = require('commander')
+const shell = require('shelljs')
 const itunes = require('./lib/itunes')
 const prompt = require('./lib/promptparse')
 const config = require('./config.json')
+
+const PROMPT_PATH = config.Prompt.Location.replace(/\./g, __dirname)
 
 program
   .version(require('./package.json').version)
@@ -15,6 +18,7 @@ program
   .option('-s, --song [song]', 'play [song] (requires --artist and --album)')
   .option('-a, --artist [artist]', 'play a song from [artist] (requires --song and --album also)')
   .option('-l, --album [album]', 'play a song in [album] (requires --song and --artist also)')
+  .option('-o, --open-prompt', 'open the prompt configuration file, then display instructions to modify it')
   .parse(process.argv)
 
 async function applyActions() {
@@ -22,6 +26,7 @@ async function applyActions() {
   if (program.previous) await itunes.gotoPrevious()
   if (program.skip) await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
+  if (program.openPrompt) await shell.exec(`open -e ${PROMPT_PATH}`)
 
   if (program.song || program.artist || program.album) {
     await itunes.playSong({
@@ -33,16 +38,23 @@ async function applyActions() {
 }
 
 async function showStatus() {
-  let state = await itunes.getPlayerState()
-  let meta = await itunes.getMetadata()
+  console.log(
+    await prompt.decode(
+      PROMPT_PATH,
+      program.noformatting
+    )
+  )
+}
 
-  if (program.noformatting) {
-    console.log(`${ state ? 'Playing' : 'Paused' }: "${meta.name}" – ${meta.artist} [${meta.album}]`)
-  }
-  else {
-    console.log(await prompt.decode(config.Prompt.Location.replace(/\./g, __dirname)))
-  }
+function showFormatGuide() {
+  console.log(prompt.formatGuideMessage)
 }
 
 // Run the selected actions, then show the status of the player
-applyActions().then(() => !program.silent ? showStatus() : void(0))
+applyActions().then(
+  () => !program.silent && !program.openPrompt
+    ? showStatus()
+    : program.openPrompt
+      ? showFormatGuide()
+      : void(0)
+)
