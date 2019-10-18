@@ -19,6 +19,8 @@ program
   .option('-a, --artist [artist]', 'play a song from [artist] (requires --song and --album also)')
   .option('-l, --album [album]', 'play a song in [album] (requires --song and --artist also)')
   .option('-o, --open-prompt', 'open the prompt configuration file, then display instructions to modify it')
+  .option('-p, --playlist [playlist]', 'play a specified playlist')
+  .option('-A, --playlist-add [playlist]', 'add the now playing song to the specified playlist')
   .parse(process.argv)
 
 async function applyActions() {
@@ -26,6 +28,9 @@ async function applyActions() {
   if (program.previous) await itunes.gotoPrevious()
   if (program.skip) await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
+  if (program.playlistAdd) await itunes.addToPlaylist(await itunes.getMetadata(), program.playlistAdd)
+
+  // Open the prompt
   if (program.openPrompt) await shell.exec(`open -e ${PROMPT_PATH}`)
 
   if (program.song || program.artist || program.album) {
@@ -34,6 +39,9 @@ async function applyActions() {
       artist: program.artist,
       album: program.album
     })
+  }
+  else if (program.playlist) {
+    await itunes.playPlaylist(program.playlist)
   }
 }
 
