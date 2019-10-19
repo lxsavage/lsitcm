@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 const program = require('commander')
 const shell = require('shelljs')
+const Table = require('cli-table3')
+
 const itunes = require('./lib/itunes')
 const prompt = require('./lib/promptparse')
 const config = require('./config.json')
@@ -21,6 +23,7 @@ program
   .option('-o, --open-prompt', 'open the prompt configuration file, then display instructions to modify it')
   .option('-p, --playlist [playlist]', 'play a specified playlist')
   .option('-A, --playlist-add [playlist]', 'add the now playing song to the specified playlist')
+  .option('-y, --ls-playlist [playlist]', 'displays the songs in the playlist specified')
   .parse(process.argv)
 
 async function applyActions() {
@@ -29,6 +32,7 @@ async function applyActions() {
   if (program.skip) await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
   if (program.playlistAdd) await itunes.addToPlaylist(await itunes.getMetadata(), program.playlistAdd)
+  if (program.lsPlaylist) createPlaylistChart(program.lsPlaylist).then(chrt => console.log(chrt))
   if (program.openPrompt) shell.exec(`open -e ${PROMPT_PATH}`)
 
   if (program.song || program.artist || program.album) {
@@ -43,6 +47,20 @@ async function applyActions() {
   }
 }
 
+async function createPlaylistChart(name) {
+  let playlist = await itunes.getPlaylistMetadata(name)
+  let chart = new Table({
+    head: [ '#', 'Name', 'Artist', 'Album', 'Length' ]
+  })
+
+  for (let i = 0; i < playlist.length; i++) {
+    let song = playlist[i]
+    chart.push([ (i + 1).toString(), song.name, song.artist, song.album, song.length ])
+  }
+
+  return chart.toString()
+}
+
 async function showStatus() {
   console.log(
     await prompt.decode(
@@ -50,9 +68,6 @@ async function showStatus() {
       program.noformatting
     )
   )
-  let meta = await itunes.getPlaylistMetadata("s")
-
-  console.log(JSON.stringify(meta))
 }
 
 function showFormatGuide() {

@@ -25,6 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "ansi-styles": "^4.1.0",
+    "cli-table3": "^0.5.1",
     "commander": "^2.16.0",
     "macos-version": "^5.2.0",
     "node-osascript": "^2.1.0",
