@@ -29,9 +29,7 @@ async function applyActions() {
   if (program.skip) await itunes.gotoNext()
   if (program.playpause) await itunes.playPause()
   if (program.playlistAdd) await itunes.addToPlaylist(await itunes.getMetadata(), program.playlistAdd)
-
-  // Open the prompt
-  if (program.openPrompt) await shell.exec(`open -e ${PROMPT_PATH}`)
+  if (program.openPrompt) shell.exec(`open -e ${PROMPT_PATH}`)
 
   if (program.song || program.artist || program.album) {
     await itunes.playSong({
@@ -52,6 +50,9 @@ async function showStatus() {
       program.noformatting
     )
   )
+  let meta = await itunes.getPlaylistMetadata("s")
+
+  console.log(JSON.stringify(meta))
 }
 
 function showFormatGuide() {
@@ -59,8 +60,8 @@ function showFormatGuide() {
 }
 
 // Run the selected actions, then show the status of the player
-applyActions().then(
-  () => !program.silent && !program.openPrompt
+applyActions().then(() =>
+  !program.silent && !program.openPrompt
     ? showStatus()
     : program.openPrompt
       ? showFormatGuide()
