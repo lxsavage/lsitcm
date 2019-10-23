@@ -7,7 +7,7 @@ const itunes = require('./lib/itunes')
 const prompt = require('./lib/promptparse')
 const config = require('./config.json')
 
-const PROMPT_PATH = config.Prompt.Location.replace(/\./g, __dirname)
+const PROMPT_PATH = `${__dirname}/prompts/${config.Prompt}.prompt`
 
 program
   .version(require('./package.json').version)
@@ -33,7 +33,7 @@ async function applyActions() {
   if (program.playpause) await itunes.playPause()
   if (program.playlistAdd) await itunes.addToPlaylist(await itunes.getMetadata(), program.playlistAdd)
   if (program.lsPlaylist) createPlaylistChart(program.lsPlaylist).then(chrt => console.log(chrt))
-  if (program.openPrompt) shell.exec(`open -e ${PROMPT_PATH}`)
+  if (program.openPrompt) shell.exec(`open "${__dirname}/prompts"`)
 
   if (program.song || program.artist || program.album) {
     await itunes.playSong({
@@ -62,12 +62,16 @@ async function createPlaylistChart(name) {
 }
 
 async function showStatus() {
-  console.log(
-    await prompt.decode(
+  try {
+    let output = await prompt.decode(
       PROMPT_PATH,
       program.noformatting
     )
-  )
+    console.log(output)
+  }
+  catch (e) {
+    console.log('No music is currently playing. Start a playlist by running "lsitcm -p [Playlist]"')
+  }
 }
 
 function showFormatGuide() {

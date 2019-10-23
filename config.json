@@ -1,5 +1,3 @@
 {
-    "Prompt": {
-        "Location": "./PROMPT"
-    }
+    "Prompt": "default"
 }
