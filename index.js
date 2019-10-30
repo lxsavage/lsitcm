@@ -7,6 +7,8 @@ const itunes = require('./lib/itunes')
 const prompt = require('./lib/promptparse')
 const config = require('./config.json')
 
+const suggestions = require('./suggestions.json')
+
 const PROMPT_PATH = `${__dirname}/prompts/${config.Prompt}.prompt`
 
 program
@@ -21,6 +23,7 @@ program
   .option('-a, --artist [artist]', 'play a song from [artist] (requires --song and --album also)')
   .option('-l, --album [album]', 'play a song in [album] (requires --song and --artist also)')
   .option('-o, --open-prompt', 'open the prompt configuration file, then display instructions to modify it')
+  .option('-C, --open-config', 'opens the configuration file in the default text editor')
   .option('-p, --playlist [playlist]', 'play a specified playlist')
   .option('-A, --playlist-add [playlist]', 'add the now playing song to the specified playlist')
   .option('-y, --ls-playlist [playlist]', 'displays the songs in the playlist specified')
@@ -34,16 +37,18 @@ async function applyActions() {
   if (program.playlistAdd) await itunes.addToPlaylist(await itunes.getMetadata(), program.playlistAdd)
   if (program.lsPlaylist) createPlaylistChart(program.lsPlaylist).then(chrt => console.log(chrt))
   if (program.openPrompt) shell.exec(`open "${__dirname}/prompts"`)
+  if (program.openConfig) shell.exec(`${config.Editor} "${__dirname}/config.json"`)
 
   if (program.song || program.artist || program.album) {
     await itunes.playSong({
       name: program.song,
       artist: program.artist,
       album: program.album
-    })
+    }).catch(err => console.log(err))
   }
   else if (program.playlist) {
     await itunes.playPlaylist(program.playlist)
+      .catch(err => console.log(err))
   }
 }
 
@@ -63,26 +68,18 @@ async function createPlaylistChart(name) {
 
 async function showStatus() {
   try {
-    let output = await prompt.decode(
-      PROMPT_PATH,
-      program.noformatting
-    )
-    console.log(output)
+    await prompt.decode(PROMPT_PATH, program.noformatting)
+      .then(output => console.log(output))
+      .catch(() => console.log(`No music is currently playing. ${suggestions[Math.floor(Math.random() * suggestions.length)]}`))
   }
   catch (e) {
-    console.log('No music is currently playing. Start a playlist by running "lsitcm -p [Playlist]"')
+    console.log(`No music is currently playing. ${suggestions[Math.floor(Math.random() * suggestions.length)]}`)
   }
-}
-
-function showFormatGuide() {
-  console.log(prompt.formatGuideMessage)
 }
 
 // Run the selected actions, then show the status of the player
 applyActions().then(() =>
   !program.silent && !program.openPrompt
     ? showStatus()
-    : program.openPrompt
-      ? showFormatGuide()
-      : void(0)
+    : void(0)
 )

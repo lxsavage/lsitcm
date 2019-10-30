@@ -27,5 +27,7 @@ A few examples of how the program can be used are as follows:
   - `lsitcm -P` Pause
   - `lsitcm -N` Next song
   - `lsitcm -R` Previous song
+4. Preview a playlist:
+  - `lsitcm -y [PLAYLIST NAME]`
 
 All commands that are available are shown through `lsitcm -h`
