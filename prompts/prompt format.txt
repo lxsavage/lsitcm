@@ -8,6 +8,6 @@ $y is year
 Colors:
     NOTE: format items that are capitalized shouldn't have a
     color set to them.
-%0xabc123% Color, as represented by hex
+%0xabc123% Color 0xABC123, as represented by hex
 %#% Close formatting (always required to close before opening another color,
     or the end of the prompt)

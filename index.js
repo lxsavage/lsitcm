@@ -70,10 +70,18 @@ async function showStatus() {
   try {
     await prompt.decode(PROMPT_PATH, program.noformatting)
       .then(output => console.log(output))
-      .catch(() => console.log(`No music is currently playing. ${suggestions[Math.floor(Math.random() * suggestions.length)]}`))
+      .catch(() =>
+        console.log(`No music is currently playing. ${
+          suggestions[Math.floor(Math.random() * suggestions.length)]
+        }`)
+      )
   }
-  catch (e) {
-    console.log(`No music is currently playing. ${suggestions[Math.floor(Math.random() * suggestions.length)]}`)
+  catch (err) {
+    console.log(
+      `No music is currently playing. ${
+        suggestions[Math.floor(Math.random() * suggestions.length)]
+      }`
+    )
   }
 }
 
