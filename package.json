@@ -1,6 +1,6 @@
 {
   "name": "lsitcm",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Control iTunes/Music via a CLI",
   "keywords": [
     "itunes"
@@ -25,9 +25,10 @@
   "license": "MIT",
   "dependencies": {
     "ansi-styles": "^4.1.0",
-    "applescript": "^1.0.0",
+    "cli-table3": "^0.5.1",
     "commander": "^2.16.0",
     "macos-version": "^5.2.0",
+    "node-osascript": "^2.1.0",
     "shelljs": "^0.8.3"
   }
 }
