@@ -22,7 +22,7 @@ program
   .option('-s, --song [song]', 'play [song] (requires --artist and --album)')
   .option('-a, --artist [artist]', 'play a song from [artist] (requires --song and --album also)')
   .option('-l, --album [album]', 'play a song in [album] (requires --song and --artist also)')
-  .option('-o, --open-prompt', 'open the prompt configuration file, then display instructions to modify it')
+  .option('-o, --open-prompt', 'open the prompt configuration folder')
   .option('-C, --open-config', 'opens the configuration file in the default text editor')
   .option('-p, --playlist [playlist]', 'play a specified playlist')
   .option('-A, --playlist-add [playlist]', 'add the now playing song to the specified playlist')
@@ -67,22 +67,13 @@ async function createPlaylistChart(name) {
 }
 
 async function showStatus() {
-  try {
-    await prompt.decode(PROMPT_PATH, program.noformatting)
-      .then(output => console.log(output))
-      .catch(() =>
-        console.log(`No music is currently playing. ${
-          suggestions[Math.floor(Math.random() * suggestions.length)]
-        }`)
-      )
-  }
-  catch (err) {
-    console.log(
-      `No music is currently playing. ${
+  await prompt.decode(PROMPT_PATH, program.noformatting)
+    .then(output => console.log(output))
+    .catch(() =>
+      console.log(`No music is currently playing. ${
         suggestions[Math.floor(Math.random() * suggestions.length)]
-      }`
+      }`)
     )
-  }
 }
 
 // Run the selected actions, then show the status of the player
