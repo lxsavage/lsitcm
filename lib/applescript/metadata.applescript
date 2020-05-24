@@ -7,7 +7,7 @@ tell application "iTunes"
 	set b to the bpm of current track
 	set c to the composer of current track
 	set g to the genre of current track
-	set t to the time of current track
+	set t to the round(((time of current track) / 1000) mod 60) rounding down
 	set p to player position
 	set u to the track number of current track
 end tell
